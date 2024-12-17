@@ -33,14 +33,12 @@ The following is needed to run this game:
 
 ![image](https://github.com/user-attachments/assets/dc0d718f-e1ca-4b59-8e9e-b92b6f5fe4d1)
 
-The more detailed the better – you all know how much I love a good finite state machine and Boolean logic, so those could be some good ideas if appropriate for your system. If not, some kind of high level block diagram showing how different parts of your program connect together and/or showing how what you have created might fit into a more complete system could be appropriate instead.
-
 
 # Instructions
 A summary of the steps to get the project to work in Vivado and on the Nexys board (5 points of the Submission category)
 
 # I/O
-The inputs and outputs were taken from lab 6.
+The inputs and outputs were taken from lab 6. The 3 buttons are used for horizontal movement, and resetting the block in the game.
 
 ```
 set_property -dict { PACKAGE_PIN N17 IOSTANDARD LVCMOS33 } [get_ports { btn0 }]; #IO_L9P_T1_DQS_14 Sch=btnc
