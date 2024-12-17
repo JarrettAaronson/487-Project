@@ -9,15 +9,15 @@
 The purpose of this project is for us to simulate the gameplay style of the popular video game Tetris
 This will include:
 
--A gameboard that will be a 10 x 15 40-pixel grid
--Block shapes fall from the top of the screen into this gameboard
--The block shapes stack on top of each other in the gameboard
--Players can use buttons to move the blocks horizontally to position where they land
--There are multiple shapes and they can be rotated for a better fit in the gameboard
--Once a row in the gameboard is filled up entirely, that row is cleared
--If the blocks stack over a certain height in the gameboard, the game is over
--The game will count how many blocks are placed
--The players goal is to place as many blocks as possible
+- A gameboard that will be a 10 x 15 40-pixel grid
+- Block shapes fall from the top of the screen into this gameboard
+- The block shapes stack on top of each other in the gameboard
+- Players can use buttons to move the blocks horizontally to position where they land
+- There are multiple shapes and they can be rotated for a better fit in the gameboard
+- Once a row in the gameboard is filled up entirely, that row is cleared
+- If the blocks stack over a certain height in the gameboard, the game is over
+- The game will count how many blocks are placed
+- The players goal is to place as many blocks as possible
 
 # Required components
 
