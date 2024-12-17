@@ -38,7 +38,7 @@ The following is needed to run this game:
 A summary of the steps to get the project to work in Vivado and on the Nexys board (5 points of the Submission category)
 
 
-#### 1. Create a new RTL project tetris in Vivado Quick Start
+### 1. Create a new RTL project tetris in Vivado Quick Start
 - Create six new source files of file type VHDL called pong, bat_n_ball, clk_wiz_0, clk_wiz_0_clk_wiz, leddec16, vga_sync
 - Create a new constraint file of file type XDC called pong
 - Choose Nexys A7-100T board for the project
@@ -46,13 +46,21 @@ A summary of the steps to get the project to work in Vivado and on the Nexys boa
 - Click design sources and copy the VHDL code from pong.vhd, bat_n_ball.vhd, clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, leddec16.vhd, vga_sync.vhd
 - Click constraints and copy the code from pong.xdc
 - As an alternative, you can instead download files from Github and import them into your project when creating the project. The source file or files would still be imported during the Source step, and the constraint file or files would still be imported during the Constraints step.
-#### 2. Run synthesis
-#### 3. Run implementation
-#### 4. Generate bitstream, open hardware manager, and program device
+### 2. Run synthesis
+### 3. Run implementation
+### 4. Generate bitstream, open hardware manager, and program device
 - Click 'Generate Bitstream'
 - Click 'Open Hardware Manager' and click 'Open Target' then 'Auto Connect'
 - Click 'Program Device' then xc7a100t_0 to download pong.bit to the Nexys A7-100T board
-
+### 5. How to play
+![IMG_6285](https://github.com/user-attachments/assets/9c1f4c2d-ec90-490a-ae53-9c281535780c)
+- Press btn0 to start the game
+- Use btnl to move the block left
+- Use btnr to move the block right
+- When the block lands on the bottom it will jump to the top
+- A cyan block will fill its place at the bottom that you can land on
+- Goal is to fill the screen below the red line
+  
 # I/O
 The inputs and outputs were taken from lab 6. The 3 buttons are used for horizontal movement, and resetting the block in the game.
 
