@@ -53,5 +53,6 @@ If building on an existing lab or expansive starter code of some kind, describe 
 
 
 
+# Summary
 
 Conclude with a summary of the process itself – who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc. (10 points of the Submission category)
