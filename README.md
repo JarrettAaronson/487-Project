@@ -40,6 +40,7 @@ The more detailed the better – you all know how much I love a good finite stat
 A summary of the steps to get the project to work in Vivado and on the Nexys board (5 points of the Submission category)
 
 # I/O
+The inputs and outputs were taken from lab 6.
 
 ```
 set_property -dict { PACKAGE_PIN N17 IOSTANDARD LVCMOS33 } [get_ports { btn0 }]; #IO_L9P_T1_DQS_14 Sch=btnc
@@ -47,9 +48,6 @@ set_property -dict { PACKAGE_PIN P17 IOSTANDARD LVCMOS33 } [get_ports { btnl }];
 set_property -dict { PACKAGE_PIN M17 IOSTANDARD LVCMOS33 } [get_ports { btnr }]; #IO_L10N_T1_D15_14 Sch=btnr
 ```
 
-Description of inputs from and outputs to the Nexys board from the Vivado project (10 points of the Submission category)
-
-As part of this category, if using starter code of some kind (discussed below), you should add at least one input and at least one output appropriate to your project to demonstrate your understanding of modifying the ports of your various architectures and components in VHDL as well as the separate .xdc constraints file.
 
 # Images / Videos
 Images and/or videos of the project in action interspersed throughout to provide context (10 points of the Submission category)
