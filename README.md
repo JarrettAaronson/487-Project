@@ -82,20 +82,18 @@ Images and/or videos of the project in action interspersed throughout to provide
   - The ball logic was removed entirely.
   - The bat became a falling block that drops from the top of the screen.
   - Blocks lock into place when they reach the bottom of the screen or another block.
-  - Multiple blocks stack on top of each other, forming a grid (similar to Tetris).
+  - Multiple blocks stack on top of each other, forming a grid.
   - A red horizontal line was drawn at y = 100 to indicate a threshold for the game end.
 
 
 ### 2. New Features Added
+
   Grid:
-  - A grid of 10 columns by 15 rows was implemented (ROWS = 15, COLS = 10).
-  - Each grid cell represents a location where blocks can land.
+  - A grid of 10 columns by 15 rows was implemented (ROWS = 15, COLS = 10). Where each grid cell represents a location where blocks can land.
   - A signal board (STD_LOGIC_VECTOR(149 DOWNTO 0)) tracks which grid cells are occupied.
-
-
+    
   Block Landing:
-  - The block checks the grid (board) to determine if it should stop falling.
-  - When a block stops, its position updates the grid to mark the corresponding cell as occupied.
+  - The block checks the grid to determine if it should stop falling, when a block stops, its position updates the grid to mark the corresponding cell as occupied.
     
   Block Reset:
   - After a block lands, a new block spawns at the top of the screen.
@@ -109,17 +107,18 @@ Images and/or videos of the project in action interspersed throughout to provide
   - board_in and board_out: Pass the grid status between components.
     
   A new component falling_block was introduced to:
-  - Calculate and update the block's position (bat_x, bat_y).
-  - Check for collisions with the bottom or occupied grid cells.
-  - Output the color of the falling block (e.g., red/green alternating).
-  - Update the grid (board) when the block lands.
+  - Calculate and update the block's position using bat_x, bat_y.
+  - Check for collisions with the bottom or other blocks.
+  - Output the color of the falling block.
+  - Update the grid when the block lands.
 
 ### 4. Visual Changes
 
   Original Pong:
   - Visuals included a bat and ball, with a white background.
+    
   Our Conversion:
-  - A fixed black border on the left and right sides of the play area.
+  - A fixed black border on the left and right sides of the screen.
   - The grid displays cyan blocks for landed positions.
   - The falling block alternates between red and green based on the block_count.
   - A red horizontal line at y = 100 marks the game-over threshold.
@@ -128,9 +127,10 @@ Images and/or videos of the project in action interspersed throughout to provide
 
   Original Pong:
   - Simple left/right movement for the bat using buttons btnl and btnr.
+    
   Our Conversion:
   - The falling block moves in 40-pixel increments when btnl or btnr is pressed.
-  - Movement is constrained within grid boundaries (LEFT_BOUND and RIGHT_BOUND).
+  - Movement is constrained within the boundaries using LEFT_BOUND and RIGHT_BOUND.
   - A reset_block_sig signal triggers the spawning of a new block after the current block lands.
 
 
