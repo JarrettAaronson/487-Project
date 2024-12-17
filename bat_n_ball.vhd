@@ -58,7 +58,7 @@ BEGIN
         pcol := TO_INTEGER(UNSIGNED(pixel_col));
         bx := TO_INTEGER(UNSIGNED(bat_x));
         by := TO_INTEGER(bat_y);
-
+        -- draws the block and sets block on for pixels
         IF (pcol >= (bx - bat_w)) AND (pcol <= (bx + bat_w)) AND
            (prow >= (by - bat_h)) AND (prow <= (by + bat_h)) THEN
             bat_on <= '1';
@@ -73,7 +73,7 @@ BEGIN
     BEGIN
         pcol := TO_INTEGER(UNSIGNED(pixel_col));
         even_block := (TO_INTEGER(UNSIGNED(block_count)) MOD 2 = 0);
-
+        -- logic to change color of blocks
         IF (pcol >= LEFT_PLAY_AREA) AND (pcol <= RIGHT_PLAY_AREA) THEN
             IF bat_on = '1' THEN
                 IF even_block THEN
@@ -88,7 +88,7 @@ BEGIN
             red <= '0'; green <= '0'; blue <= '0';
         END IF;
     END PROCESS;
-
+    -- process to check which cell the block ia in
     PROCESS(bat_x, bat_y)
         VARIABLE bx, by : INTEGER;
     BEGIN
@@ -107,14 +107,14 @@ BEGIN
         VARIABLE idx : INTEGER;
     BEGIN
         WAIT UNTIL rising_edge(v_sync);
-
+    -- movement logic of the blocks
         IF reset_block = '1' THEN
             bat_y <= TO_UNSIGNED(bat_h, 11);
             block_falling <= '1';
         ELSIF block_falling = '1' THEN
             next_y := TO_INTEGER(bat_y) + TO_INTEGER(fall_speed);
             next_row := (next_y - bat_h) / CELL_SIZE;
-
+            -- if block hits bottom
             IF (next_y + bat_h) >= SCREEN_BOTTOM THEN
                 bat_y <= TO_UNSIGNED(SCREEN_BOTTOM - bat_h, 11);
                 block_falling <= '0';
@@ -124,6 +124,7 @@ BEGIN
                     board_reg(idx) <= '1';
                 END IF;
             ELSE
+                --check cell below where block is to see if a block is there
                 IF (cell_col_s >=0 AND cell_col_s < COLS AND next_row >=0 AND next_row < ROWS) THEN
                     idx := next_row*COLS + cell_col_s;
                     IF board_reg(idx) = '1' THEN
