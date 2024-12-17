@@ -43,7 +43,7 @@ BEGIN
     falling <= block_falling;
     board_out <= board_reg;
 
-    -- Initialize board_reg from board_in on every frame
+    
     process(v_sync)
     begin
         if rising_edge(v_sync) then
@@ -51,7 +51,6 @@ BEGIN
         end if;
     end process;
 
-    -- Determine if current pixel is on the block
     PROCESS (bat_x, bat_y, pixel_row, pixel_col)
         VARIABLE bx, by, prow, pcol : INTEGER;
     BEGIN
@@ -68,7 +67,6 @@ BEGIN
         END IF;
     END PROCESS;
 
-    -- Color logic: Alternate color based on block_count
     PROCESS(pixel_col, bat_on, block_count)
         VARIABLE pcol : INTEGER;
         VARIABLE even_block : BOOLEAN;
@@ -79,23 +77,18 @@ BEGIN
         IF (pcol >= LEFT_PLAY_AREA) AND (pcol <= RIGHT_PLAY_AREA) THEN
             IF bat_on = '1' THEN
                 IF even_block THEN
-                    -- Red block
                     red <= '1'; green <= '0'; blue <= '0';
                 ELSE
-                    -- Green block
                     red <= '0'; green <= '1'; blue <= '0';
                 END IF;
             ELSE
-                -- White background
                 red <= '1'; green <= '1'; blue <= '1';
             END IF;
         ELSE
-            -- Black outside area
             red <= '0'; green <= '0'; blue <= '0';
         END IF;
     END PROCESS;
 
-    -- Calculate current cell position of the block
     PROCESS(bat_x, bat_y)
         VARIABLE bx, by : INTEGER;
     BEGIN
@@ -108,7 +101,6 @@ BEGIN
     landed_row <= STD_LOGIC_VECTOR(TO_UNSIGNED(cell_row_s,4));
     landed_col <= STD_LOGIC_VECTOR(TO_UNSIGNED(cell_col_s,4));
 
-    -- Vertical motion and board update
     move_block : PROCESS
         VARIABLE next_y : INTEGER;
         VARIABLE next_row : INTEGER;
@@ -117,7 +109,6 @@ BEGIN
         WAIT UNTIL rising_edge(v_sync);
 
         IF reset_block = '1' THEN
-            -- Reset block to the top
             bat_y <= TO_UNSIGNED(bat_h, 11);
             block_falling <= '1';
         ELSIF block_falling = '1' THEN
@@ -125,24 +116,19 @@ BEGIN
             next_row := (next_y - bat_h) / CELL_SIZE;
 
             IF (next_y + bat_h) >= SCREEN_BOTTOM THEN
-                -- Land at bottom
                 bat_y <= TO_UNSIGNED(SCREEN_BOTTOM - bat_h, 11);
                 block_falling <= '0';
 
-                -- Update board immediately
                 IF cell_row_s>=0 AND cell_row_s<ROWS AND cell_col_s>=0 AND cell_col_s<COLS THEN
                     idx := cell_row_s*COLS + cell_col_s;
                     board_reg(idx) <= '1';
                 END IF;
             ELSE
-                -- Check the cell below
                 IF (cell_col_s >=0 AND cell_col_s < COLS AND next_row >=0 AND next_row < ROWS) THEN
                     idx := next_row*COLS + cell_col_s;
                     IF board_reg(idx) = '1' THEN
-                        -- Land just above this occupied cell
                         bat_y <= TO_UNSIGNED((cell_row_s*CELL_SIZE)+bat_h, 11);
                         block_falling <= '0';
-                        -- Update board immediately
                         idx := cell_row_s*COLS + cell_col_s;
                         board_reg(idx) <= '1';
                     ELSE
