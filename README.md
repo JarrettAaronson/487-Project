@@ -53,7 +53,9 @@ A summary of the steps to get the project to work in Vivado and on the Nexys boa
 - Click 'Open Hardware Manager' and click 'Open Target' then 'Auto Connect'
 - Click 'Program Device' then xc7a100t_0 to download pong.bit to the Nexys A7-100T board
 ### 5. How to play
+
  <img src="https://github.com/user-attachments/assets/9c1f4c2d-ec90-490a-ae53-9c281535780c" alt="drawing" width="250"/>
+ 
 - Press btn0 to start the game
 - Use btnl to move the block left
 - Use btnr to move the block right
@@ -61,7 +63,10 @@ A summary of the steps to get the project to work in Vivado and on the Nexys boa
 - A cyan block will fill its place at the bottom that you can land on
 - Goal is to fill the screen below the red line
 
+ <img src="https://github.com/user-attachments/assets/f82cfa05-fb87-42e5-906c-299d8ce180cc" alt="drawing" width="250"/>
+
 # I/O
+
 The inputs and outputs were taken from lab 6. The 3 buttons are used for horizontal movement, and resetting the block in the game.
 
 ```
