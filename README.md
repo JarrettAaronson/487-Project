@@ -75,10 +75,6 @@ set_property -dict { PACKAGE_PIN P17 IOSTANDARD LVCMOS33 } [get_ports { btnl }];
 set_property -dict { PACKAGE_PIN M17 IOSTANDARD LVCMOS33 } [get_ports { btnr }]; #IO_L10N_T1_D15_14 Sch=btnr
 ```
 
-
-# Images / Videos
-Images and/or videos of the project in action interspersed throughout to provide context (10 points of the Submission category)
-
 # Modifications
 ### We started this project with lab 6 as the baseline and slowly converted it into tetris. Below describes all the changes we made:
 
