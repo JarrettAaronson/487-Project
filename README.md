@@ -35,8 +35,6 @@ The following is needed to run this game:
 
 
 # Instructions
-A summary of the steps to get the project to work in Vivado and on the Nexys board (5 points of the Submission category)
-
 
 ### 1. Create a new RTL project tetris in Vivado Quick Start
 - Create six new source files of file type VHDL called pong, bat_n_ball, clk_wiz_0, clk_wiz_0_clk_wiz, leddec16, vga_sync
@@ -159,3 +157,8 @@ set_property -dict { PACKAGE_PIN M17 IOSTANDARD LVCMOS33 } [get_ports { btnr }];
 - Inconsistent cyan square placement where the cyan square would place in random areas instead of where the block landed.
 - The reset button would simply restart the box at the top, but not clear the grid.
 - Plus probably over 1000 more challenges, this project took countless hours.
+
+ <img src="https://github.com/user-attachments/assets/b78cf9e6-d437-49af-8a65-70a72c7f061a" alt="drawing" width="250"/>
+
+
+
