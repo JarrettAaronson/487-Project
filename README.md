@@ -143,4 +143,23 @@ Images and/or videos of the project in action interspersed throughout to provide
 
 # Summary
 
-Conclude with a summary of the process itself – who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc. (10 points of the Submission category)
+### Overall this project has been a great learning experience and we enjoyed (and dreaded) almost every second. There were lots of challenges and problems that we ran into, but we can confidently say we go to a point where we were satisfied with the result.
+
+### Dominick Vovk:
+- Designed block stack logic
+- Designed grid for block tracking
+### Ryan DeSantis:
+- Designed block spawning
+- Designed arena
+### Jarrett Aaronson:
+- Created movement logic
+- Linked all I/O
+
+### Difficulties Faced:
+- Certain libraries were not compatible and it took us a long time to figure that out, leading to lots of wasted efforts.
+- Block stacking would not work as the blocks would fall right through each other, but we managed to fix it in the end.
+- Changing shapes proved to be extremely difficult, not to mention rotate them.
+- Blocks wouldn't stay behind after being locked into grid, leading to invisible blocks
+- Inconsistent cyan square placement where the cyan square would place in random areas instead of where the block landed.
+- The reset button would simply restart the box at the top, but not clear the grid.
+- Plus probably over 1000 more challenges, this project took countless hours.
