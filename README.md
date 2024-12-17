@@ -37,6 +37,22 @@ The following is needed to run this game:
 # Instructions
 A summary of the steps to get the project to work in Vivado and on the Nexys board (5 points of the Submission category)
 
+
+#### 1. Create a new RTL project tetris in Vivado Quick Start
+- Create six new source files of file type VHDL called pong, bat_n_ball, clk_wiz_0, clk_wiz_0_clk_wiz, leddec16, vga_sync
+- Create a new constraint file of file type XDC called pong
+- Choose Nexys A7-100T board for the project
+- Click 'Finish'
+- Click design sources and copy the VHDL code from pong.vhd, bat_n_ball.vhd, clk_wiz_0.vhd, clk_wiz_0_clk_wiz.vhd, leddec16.vhd, vga_sync.vhd
+- Click constraints and copy the code from pong.xdc
+- As an alternative, you can instead download files from Github and import them into your project when creating the project. The source file or files would still be imported during the Source step, and the constraint file or files would still be imported during the Constraints step.
+#### 2. Run synthesis
+#### 3. Run implementation
+#### 4. Generate bitstream, open hardware manager, and program device
+- Click 'Generate Bitstream'
+- Click 'Open Hardware Manager' and click 'Open Target' then 'Auto Connect'
+- Click 'Program Device' then xc7a100t_0 to download pong.bit to the Nexys A7-100T board
+
 # I/O
 The inputs and outputs were taken from lab 6. The 3 buttons are used for horizontal movement, and resetting the block in the game.
 
