@@ -67,9 +67,63 @@ set_property -dict { PACKAGE_PIN M17 IOSTANDARD LVCMOS33 } [get_ports { btnr }];
 Images and/or videos of the project in action interspersed throughout to provide context (10 points of the Submission category)
 
 # Modifications
-“Modifications” (15 points of the Submission category)
+### We started this project with lab 6 as the baseline and slowly converted it into tetris. Below describes all the changes we made:
 
-If building on an existing lab or expansive starter code of some kind, describe your “modifications” – the changes made to that starter code to improve the code, create entirely new functionalities, etc. Unless you were starting from one of the labs, please share any starter code used as well, including crediting the creator(s) of any code used. It is perfectly ok to start with a lab or other code you find as a baseline, but you will be judged on your contributions on top of that pre-existing code!
+### 1. Gameplay Changes
+  
+  - The ball logic was removed entirely.
+  - The bat became a falling block that drops from the top of the screen.
+  - Blocks lock into place when they reach the bottom of the screen or another block.
+  - Multiple blocks stack on top of each other, forming a grid (similar to Tetris).
+  - A red horizontal line was drawn at y = 100 to indicate a threshold for the game end.
+
+
+### 2. New Features Added
+  Grid:
+  - A grid of 10 columns by 15 rows was implemented (ROWS = 15, COLS = 10).
+  - Each grid cell represents a location where blocks can land.
+  - A signal board (STD_LOGIC_VECTOR(149 DOWNTO 0)) tracks which grid cells are occupied.
+
+
+  Block Landing:
+  - The block checks the grid (board) to determine if it should stop falling.
+  - When a block stops, its position updates the grid to mark the corresponding cell as occupied.
+    
+  Block Reset:
+  - After a block lands, a new block spawns at the top of the screen.
+
+### 3. Signal Changes and New Components
+
+  Added Signals:
+  - falling: Indicates if the block is actively falling.
+  - block_count: Counts the total number of blocks placed.
+  - landed_row and landed_col: Grid cell coordinates where the block landed.
+  - board_in and board_out: Pass the grid status between components.
+    
+  A new component falling_block was introduced to:
+  - Calculate and update the block's position (bat_x, bat_y).
+  - Check for collisions with the bottom or occupied grid cells.
+  - Output the color of the falling block (e.g., red/green alternating).
+  - Update the grid (board) when the block lands.
+
+### 4. Visual Changes
+
+  Original Pong:
+  - Visuals included a bat and ball, with a white background.
+  Our Conversion:
+  - A fixed black border on the left and right sides of the play area.
+  - The grid displays cyan blocks for landed positions.
+  - The falling block alternates between red and green based on the block_count.
+  - A red horizontal line at y = 100 marks the game-over threshold.
+
+### 5. Control Logic
+
+  Original Pong:
+  - Simple left/right movement for the bat using buttons btnl and btnr.
+  Our Conversion:
+  - The falling block moves in 40-pixel increments when btnl or btnr is pressed.
+  - Movement is constrained within grid boundaries (LEFT_BOUND and RIGHT_BOUND).
+  - A reset_block_sig signal triggers the spawning of a new block after the current block lands.
 
 
 
