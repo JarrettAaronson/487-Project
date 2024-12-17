@@ -168,17 +168,17 @@ BEGIN
         prow := to_integer(unsigned(S_pixel_row));
         pcol := to_integer(unsigned(S_pixel_col));
 
-    
+        --black backkground
         draw_red   <= '0';
         draw_green <= '0';
         draw_blue  <= '0';
 
         IF (pcol >= LEFT_PLAY_AREA) AND (pcol < RIGHT_PLAY_AREA) AND (prow < 600) THEN
-            
+            -- white gameboard
             draw_red <= '1';
             draw_green <= '1';
             draw_blue <= '1';
-
+            -- drawing placed blocks
             cell_c := (pcol - LEFT_PLAY_AREA)/CELL_SIZE;
             cell_r := prow/CELL_SIZE;
             IF (cell_r >=0 AND cell_r < ROWS AND cell_c>=0 AND cell_c<COLS) THEN
@@ -191,7 +191,7 @@ BEGIN
             END IF;
         END IF;
 
-        
+        --top boundary line
         IF (pcol >= LEFT_PLAY_AREA AND pcol < RIGHT_PLAY_AREA AND prow = 100) THEN
             draw_red <= '1';
             draw_green <= '0';
@@ -214,7 +214,7 @@ BEGIN
     BEGIN
         IF rising_edge(clk_in) THEN
             count <= count + 1;
-
+            -- horizontal movement
             IF falling = '1' THEN
                 newpos := to_integer(unsigned(batpos));
                 IF (btnl = '1' AND btnl_prev = '0') THEN
@@ -232,7 +232,7 @@ BEGIN
                 batpos <= std_logic_vector(to_unsigned(newpos,11));
             END IF;
 
-            
+            --spawn logic for new block
             IF was_falling='1' AND falling='0' THEN
                 reset_block_sig <= '1';
                 block_count <= block_count + 1;
