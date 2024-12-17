@@ -1,13 +1,14 @@
 # Tetris Final Project
----
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Typical_Tetris_Game.svg/800px-Typical_Tetris_Game.svg.png" alt="drawing" width="250"/>
 
 # Expected Behavior
----
+
 ![](https://media.giphy.com/media/MOSebUr4rvZS0/giphy.gif?cid=790b7611y89cjijcemjxeo82wlig343d49jmynnubyurp9g2&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
 The purpose of this project is for us to simulate the gameplay style of the popular video game Tetris
 This will include:
+
 -A gameboard that will be a 10 x 15 40-pixel grid
 -Block shapes fall from the top of the screen into this gameboard
 -The block shapes stack on top of each other in the gameboard
@@ -20,7 +21,7 @@ This will include:
 
 # Required components
 
----
+
 A description of the expected behavior of the project, attachments needed (speaker module, VGA connector, etc.), related images/diagrams, etc. (10 points of the Submission category)
 The more detailed the better – you all know how much I love a good finite state machine and Boolean logic, so those could be some good ideas if appropriate for your system. If not, some kind of high level block diagram showing how different parts of your program connect together and/or showing how what you have created might fit into a more complete system could be appropriate instead.
 A summary of the steps to get the project to work in Vivado and on the Nexys board (5 points of the Submission category)
