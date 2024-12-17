@@ -4,7 +4,7 @@ USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY pong IS
     PORT (
-        clk_in : IN STD_LOGIC; -- system clock
+        clk_in : IN STD_LOGIC; 
         VGA_red : OUT STD_LOGIC_VECTOR (3 DOWNTO 0); 
         VGA_green : OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
         VGA_blue : OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
@@ -12,7 +12,7 @@ ENTITY pong IS
         VGA_vsync : OUT STD_LOGIC;
         btnl : IN STD_LOGIC;
         btnr : IN STD_LOGIC;
-        btn0 : IN STD_LOGIC;  -- External reset if needed
+        btn0 : IN STD_LOGIC;  
         SEG7_anode : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
         SEG7_seg : OUT STD_LOGIC_VECTOR (6 DOWNTO 0)
     ); 
@@ -34,8 +34,8 @@ ARCHITECTURE Behavioral OF pong IS
     CONSTANT LEFT_PLAY_AREA  : INTEGER := 200;
     CONSTANT RIGHT_PLAY_AREA : INTEGER := 600;
     CONSTANT BLOCK_HALF_WIDTH : INTEGER := 20;
-    CONSTANT LEFT_BOUND  : INTEGER := LEFT_PLAY_AREA + BLOCK_HALF_WIDTH;  -- 220
-    CONSTANT RIGHT_BOUND : INTEGER := RIGHT_PLAY_AREA - BLOCK_HALF_WIDTH; -- 580
+    CONSTANT LEFT_BOUND  : INTEGER := LEFT_PLAY_AREA + BLOCK_HALF_WIDTH;  
+    CONSTANT RIGHT_BOUND : INTEGER := RIGHT_PLAY_AREA - BLOCK_HALF_WIDTH; 
     CONSTANT MOVE_STEP : INTEGER := 40;
     CONSTANT ROWS : INTEGER := 15;
     CONSTANT COLS : INTEGER := 10;
@@ -46,12 +46,12 @@ ARCHITECTURE Behavioral OF pong IS
     SIGNAL landed_col : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL btnl_prev, btnr_prev : STD_LOGIC := '0';
 
-    SIGNAL reset_block_sig : STD_LOGIC := '1';  -- Start with a block spawning at power-up
+    SIGNAL reset_block_sig : STD_LOGIC := '1';  
     SIGNAL was_falling : STD_LOGIC := '0';
     SIGNAL reset_comb : STD_LOGIC;
 
     SIGNAL block_count : unsigned(3 DOWNTO 0) := (OTHERS=>'0');
-    SIGNAL spawn_in_progress : STD_LOGIC := '1'; -- at startup, we are spawning the first block
+    SIGNAL spawn_in_progress : STD_LOGIC := '1'; 
 
     SIGNAL board_in, board_out : STD_LOGIC_VECTOR(149 DOWNTO 0) := (OTHERS => '0');
 
@@ -159,7 +159,7 @@ BEGIN
       seg => SEG7_seg
     );
 
-    -- Drawing logic with line at y=100
+    
     PROCESS(S_pixel_col, S_pixel_row, board_out, S_red, S_green, S_blue, falling)
         VARIABLE pcol, prow : INTEGER;
         VARIABLE cell_c, cell_r : INTEGER;
@@ -168,24 +168,22 @@ BEGIN
         prow := to_integer(unsigned(S_pixel_row));
         pcol := to_integer(unsigned(S_pixel_col));
 
-        -- Default: black outside playing area
+    
         draw_red   <= '0';
         draw_green <= '0';
         draw_blue  <= '0';
 
         IF (pcol >= LEFT_PLAY_AREA) AND (pcol < RIGHT_PLAY_AREA) AND (prow < 600) THEN
-            -- Inside playing area: start with white background
+            
             draw_red <= '1';
             draw_green <= '1';
             draw_blue <= '1';
 
-            -- Draw placed blocks (cyan)
             cell_c := (pcol - LEFT_PLAY_AREA)/CELL_SIZE;
             cell_r := prow/CELL_SIZE;
             IF (cell_r >=0 AND cell_r < ROWS AND cell_c>=0 AND cell_c<COLS) THEN
                 idx := cell_r*COLS + cell_c;
                 IF board_out(idx) = '1' THEN
-                    -- Occupied cell: cyan
                     draw_red <= '0';
                     draw_green <= '1';
                     draw_blue <= '1';
@@ -193,19 +191,15 @@ BEGIN
             END IF;
         END IF;
 
-        -- Add a red horizontal line at y=100
+        
         IF (pcol >= LEFT_PLAY_AREA AND pcol < RIGHT_PLAY_AREA AND prow = 100) THEN
             draw_red <= '1';
             draw_green <= '0';
             draw_blue <= '0';
         END IF;
 
-        -- Overwrite if falling block is currently visible
+        
         IF falling='1' THEN
-            -- If the falling block color is determined inside falling_block based on bat_on,
-            -- and drawn as S_red,S_green,S_blue where bat_on='1',
-            -- then we only overwrite if that condition is met:
-            -- If S_red,S_green,S_blue represent block color only if bat_on='1', then:
             IF ((S_red='1' AND S_green='0' AND S_blue='0') OR
                 (S_red='0' AND S_green='1' AND S_blue='0')) THEN
                 draw_red <= S_red;
@@ -238,15 +232,14 @@ BEGIN
                 batpos <= std_logic_vector(to_unsigned(newpos,11));
             END IF;
 
-            -- Check if block just landed
+            
             IF was_falling='1' AND falling='0' THEN
-                -- Spawn new block
                 reset_block_sig <= '1';
                 block_count <= block_count + 1;
                 spawn_in_progress <= '1';
             END IF;
 
-            -- Wait until new block starts falling again
+            
             IF spawn_in_progress='1' AND falling='1' THEN
                 reset_block_sig <= '0';
                 spawn_in_progress <= '0';
