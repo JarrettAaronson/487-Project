@@ -6,7 +6,7 @@
 
 ![](https://media.giphy.com/media/MOSebUr4rvZS0/giphy.gif?cid=790b7611y89cjijcemjxeo82wlig343d49jmynnubyurp9g2&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
-The purpose of this project is for us to simulate the gameplay style of the popular video game Tetris
+The purpose of this project is for us to simulate the gameplay style of the popular video game Tetris.
 This will include:
 
 - A gameboard that will be a 10 x 15 40-pixel grid
